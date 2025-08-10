@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>STIGMA STORE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap");
+    body { 
+      font-family: "Inter", sans-serif; 
+      background: black;
+      overflow: hidden;
+    }
+
+    /* Animasi Bintang */
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.1; }
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle infinite;
+      z-index: 0;
+    }
+
+    /* Animasi Kunang-Kunang */
+    @keyframes flyAround {
+      0%   { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+      25%  { transform: translate(80px, -60px) rotate(90deg); opacity: 1; }
+      50%  { transform: translate(-100px, -40px) rotate(180deg); opacity: 0.8; }
+      75%  { transform: translate(-60px, 80px) rotate(270deg); opacity: 1; }
+      100% { transform: translate(0, 0) rotate(360deg); opacity: 0.3; }
+    }
+    .firefly {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, yellow, transparent);
+      border-radius: 50%;
+      animation: flyAround ease-in-out infinite;
+      z-index: 0;
+    }
+
+    /* Efek Aurora Background */
+    @keyframes auroraMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .aurora {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, rgba(0,255,200,0.15), rgba(0,100,255,0.1), rgba(255,0,255,0.15));
+      background-size: 200% 200%;
+      animation: auroraMove 15s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Animasi bounce */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Aurora Text */
+    @keyframes auroraText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .aurora-text {
+      background: linear-gradient(90deg, #00ffcc, #00aaff, #aa00ff, #00ffcc);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: auroraText 5s ease-in-out infinite, bounce 3s ease-in-out infinite;
+    }
+
+    /* Karakter bounce */
+    .naruto, .goku {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      bottom: 10px;
+      animation: bounce 3s ease-in-out infinite;
+      z-index: 30;
+    }
+    .naruto { right: 10px; }
+    .goku { left: 10px; }
+
+    /* Efek Hujan */
+    @keyframes rainFall {
+      0% { transform: translateY(-100%); opacity: 0.5; }
+      100% { transform: translateY(100vh); opacity: 0.5; }
+    }
+    .raindrop {
+      position: absolute;
+      width: 1.5px;
+      height: 20px;
+      background: rgba(173, 216, 230, 0.6);
+      animation: rainFall linear infinite;
+      z-index: 0;
+    }
+
+    /* Discord Logo & Text Bounce */
+    .discord-bounce {
+      animation: bounce 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen flex items-center justify-center p-4">
+
+  <!-- Efek Aurora -->
+  <div class="aurora"></div>
+
+  <!-- Script Bintang, Kunang-Kunang & Hujan -->
+  <script>
+    // Bintang
+    for(let i=0;i<200;i++){ 
+      let star=document.createElement("div");
+      let size=Math.random()*2.5+1;
+      star.classList.add("star");
+      star.style.width=size+"px";
+      star.style.height=size+"px";
+      star.style.top=Math.random()*100+"%";
+      star.style.left=Math.random()*100+"%";
+      star.style.animationDuration=(Math.random()*1.5+0.8)+"s";
+      document.body.appendChild(star);
+    }
+
+    // Kunang-kunang
+    for(let i=0;i<60;i++){ 
+      let firefly=document.createElement("div");
+      firefly.classList.add("firefly");
+      firefly.style.top=Math.random()*100+"%";
+      firefly.style.left=Math.random()*100+"%";
+      firefly.style.animationDuration=(Math.random()*10+6)+"s"; 
+      firefly.style.animationDelay=(Math.random()*5)+"s"; 
+      document.body.appendChild(firefly);
+    }
+
+    // Hujan
+    for(let i=0;i<100;i++){ 
+      let drop=document.createElement("div");
+      drop.classList.add("raindrop");
+      drop.style.left=Math.random()*100+"%";
+      drop.style.animationDuration=(Math.random()*0.7+0.5)+"s";
+      drop.style.animationDelay=(Math.random()*2)+"s";
+      document.body.appendChild(drop);
+    }
+  </script>
+
+  <!-- Konten Utama -->
+  <main class="relative max-w-3xl w-full border border-[#0a1a1a] p-8 space-y-8 z-10" style="box-shadow: 0 0 8px #0a1a1a inset">
+    <h1 class="text-4xl font-extrabold flex items-center justify-center gap-3 aurora-text">
+      <i class="fas fa-microchip text-[#00c8ff] text-4xl"></i>
+      STIGMA STORE
+      <i class="fas fa-microchip text-[#00c8ff] text-4xl"></i>
+    </h1>
+
+    <!-- Tombol Discord dengan animasi di ikon & teks -->
+    <a href="https://discord.gg/PgKTv3sDxU" target="_blank"
+       class="block w-full max-w-md mx-auto bg-white text-black font-semibold py-3 rounded-md flex items-center justify-center gap-2 hover:bg-gray-200 transition">
+      <i class="fab fa-discord text-[#5865F2] text-lg discord-bounce"></i>
+      <span class="discord-bounce">Join Discord</span>
+    </a>
+
+    <!-- Catalog -->
+    <section class="max-w-3xl mx-auto rounded-md p-6 space-y-4" style="box-shadow: 0 0 12px #00c8ff inset, 0 0 20px #0a1a1a inset">
+      <h2 class="text-white text-lg font-bold flex items-center justify-center gap-2 mb-4">
+        <i class="fas fa-sparkles text-[#00c8ff]"></i> Catalog <i class="fas fa-sparkles text-[#00c8ff]"></i>
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-md mx-auto">
+        <a href="Top_up.html"><img class="rounded-md shadow-lg hover:opacity-80 transition" src="https://i.ibb.co.com/3Hc1Srm/STIGMA.webp"></a>
+        <a href="Toko_Akun.html"><img class="rounded-md shadow-lg hover:opacity-80 transition" src="https://i.ibb.co.com/3Hc1Srm/STIGMA.webp"></a>
+        <a href="toko3.html"><img class="rounded-md shadow-lg hover:opacity-80 transition" src="https://i.postimg.cc/8PC16g6s/STIGMA.webp"></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Karakter -->
+  <img alt="Naruto" class="naruto" src="https://i.ibb.co.com/3Hc1Srm/STIGMA.webp"/>
+  <img alt="Goku" class="goku" src="https://i.ibb.co.com/3Hc1Srm/STIGMA.webp"/>
+
+</body>
+</html>
+    <a href="https://www.instagram.com/aldi_5301?igsh=NXhkeWp5bXRtM2Fy" target="_blank"><img src="https://i.ibb.co.com/ZRvLwnnQ/Ig.webp" alt="Instagram"></a>
+    <a href="https://www.youtube.com/@AldiHermawan" target="_blank"><img src="https://i.ibb.co.com/3Hc1Srm/STIGMA.webp" alt="YouTube"></a>
+  </div>
